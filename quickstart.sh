@@ -8,7 +8,7 @@ if [[ $? -eq 0 && $node_version =~ v[0-9]+\.[0-9]+ ]]; then
   read -p "Enter your BOT token: " userkey
   echo "TOKEN=\"$userkey\"" > .env
   echo "Applied Token."
-  read -p "Press ENTER to start the bot.\nEnsure you've change the config file to your liking."
+  read -p "Press ENTER to start the bot. Ensure you've change the config file to your liking."
   npm test
 else
   echo "Please install NodeJS before running this script."
