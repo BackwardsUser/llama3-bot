@@ -59,7 +59,12 @@ async function readFromFile() {
   if (!existsSync(serverDataFile))
     writeFileSync(serverDataFile, JSON.stringify([]))
   const file = readFileSync(serverDataFile);
-  const data = JSON.parse(file.toString());
+  let data;
+  if (file.toString() == "") {
+    data = [];
+    writeFileSync(serverDataFile, JSON.stringify([]));
+  } else
+    data = JSON.parse(file.toString());
   localServerMemory = data;
 }
 
