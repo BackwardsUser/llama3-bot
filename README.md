@@ -4,12 +4,14 @@ If you're not aware of what ollama or llama 3, check out they're GitHub for deta
 
 ## Quick Start Guide (local install)
 
-1. Click the **Code** button.
-2. Click **Download ZIP**.
-3. Navigate to the downloaded zip file.
-4. Unzip the file.
-5. Navigate into the llama3-bot folder until you see **package.json**
-6. Open quickstart.bat
+1. Install Docker
+2. Create an Ollama container. `docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama`
+3. Click the **Code** button.
+4. Click **Download ZIP**.
+5. Navigate to the downloaded zip file.
+6. Unzip the file.
+7. Navigate into the llama3-bot folder until you see **package.json**
+8. Open quickstart.bat
 
 ## Configuration
 The options within the config file you're free to change however you'd like, just note the prefix must be lowercase as suggested by its name.
