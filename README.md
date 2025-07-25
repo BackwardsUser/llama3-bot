@@ -2,6 +2,8 @@
 A Virtual Chat assistant you can ask unlimited questions to.
 If you're not aware of what ollama or llama 3, check out they're GitHub for details on how it works. I just slapped it into a Discord bot. Quite simply, they're chatgpt but open source, so its free unlimited usage for developers and you! No OpenAI Token required.
 
+Planning to add more configuration options (plus in app configuration) soon.
+
 ## Quick Start Guide (local install)
 
 1. Install Docker
