@@ -1,4 +1,4 @@
-import { Client, Events, GatewayIntentBits, Guild, Message } from "discord.js";
+import { Channel, Client, Events, GatewayIntentBits, Guild, Message, TextBasedChannel, TextChannel } from "discord.js";
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { botMemory } from "./interfaces";
 import { getResponse } from "./ollama";
@@ -49,7 +49,7 @@ function lsmUpdate() {
   console.log("Writing local memory to file.");
   try {
     writeFileSync(serverDataFile, JSON.stringify(localServerMemory, null, 4));
-    console.log("Successfully Wrote Memory to file.");  
+    console.log("Successfully Wrote Memory to file.");
   } catch (err) {
     if (err) console.log(err);
   }
@@ -84,8 +84,9 @@ client.on(Events.GuildUpdate, (oldGuild, newGuild) => {
   checkServer(newGuild);
 })
 
+
 client.on(Events.MessageCreate, async (message: Message) => {
-  if (!message.guild) {
+  if (!message.guild || typeof message.channel != typeof TextChannel) {
     message.reply("This message appears to be sent from outside a server.\nI am only configured to work in servers...");
     return;
   }
@@ -96,9 +97,11 @@ client.on(Events.MessageCreate, async (message: Message) => {
   const guilds = localServerMemory.filter(memItem => memItem.guildID === message.guildId);
   const thisGuild = guilds[0]; // Assume first because fuck you.
 
-  thisGuild.messages.push({ role: "user", content: message.content.split(conf.BOT_DATA.PREFIX_LOWER).join("")})
+  thisGuild.messages.push({ role: "user", content: message.content.split(conf.BOT_DATA.PREFIX_LOWER).join("") })
 
-  message.channel.sendTyping()
+  const textBasedChannel = message.channel as TextChannel; // Cast to TextChannel for "sendTyping"
+  await textBasedChannel.sendTyping();
+
   const response = await getResponse(thisGuild.messages);
   if (!response || response == "")
     message.reply("Failed to get a response to your query, try again later.");

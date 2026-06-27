@@ -9,14 +9,14 @@
   "license": "MIT",
   "description": "A Llama 3 powered Discord bot",
   "devDependencies": {
-    "nodemon": "^3.1.3",
+    "@types/mysql": "^2.15.27",
+    "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@types/mysql": "^2.15.26",
-    "discord.js": "^14.15.3",
-    "dotenv": "^16.4.5",
-    "ollama": "^0.5.1"
+    "discord.js": "^14.26.0",
+    "dotenv": "^17.4.2",
+    "ollama": "^0.6.3"
   }
 }
